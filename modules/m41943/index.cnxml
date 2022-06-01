@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Implications</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41943</md:content-id>
+  <md:title>Implications</md:title>
+  <md:abstract>To conclude our project, we will briefly discuss the implications of our work to real world applications.</md:abstract>
+  <md:uuid>be85c226-31a6-422a-86d0-401085ea0121</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1166182289368">
+      <title>Implications</title>
+      <para id="id1166174081902">We feel that although our project did not give the results we desired, we showed the potential of multilateration as an algorithm working in real time to determine the position of a sound’s origin. This system has already been proved useful in combat situations, but we believe it could also be expanded to assist in search and rescue missions, theft recovery, and many more. The flexibility in the frequencies of the sounds the system can pinpoint allows the system to adapt to a variety of constraints, even allowing the frequencies to be above what the human ear can detect, giving the system an edge of stealth that could be useful in theft recovery and in kidnappings in which the police force wishes to capture the kidnapper as well as rescue the kidnapped. The myriad of uses for this kind of position locating have not been fully explored, and we look forward to seeing where the field goes in the future.</para>
+    </section>
+  </content>
+</document>

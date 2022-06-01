@@ -1,0 +1,17 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>The Boomerang Project</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41942</md:content-id>
+  <md:title>The Boomerang Project</md:title>
+  <md:abstract>A brief description of both the Boomerang Project and the final project is included in this module.</md:abstract>
+  <md:uuid>3e2e70ba-791d-449d-8f65-6dc361e1ddaa</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1163785129679">
+      <title>The Project:</title>
+      <para id="id1163782614144">The Boomerang Project is a program used to detect the position of a sniper based on the sound a sniper rifle makes when fired. Originally developed by BBN Technologies and now currently used on military vehicles, the Boomerang Project is a wonderful example of how filtering can be combined with signal processing in real time to produce real results. Pinpointing the origin of enemy fire is not a new idea, however, it is only in recent times that improved microphones, filtering, and data processing have allowed DARPA to develop accurate and quick technologies. Current setups are used on military vehicles, but a smaller setup is in development for individual soldiers.</para>
+      <para id="id1163784779211">In our project, we sought to recreate the Boomerang Project’s algorithms in order to determine the direction of a handclap. We used an array of four microphones and the audiorecorder function in Matlab to determine the person’s position in a 2D plane using a technique called multilateration. To increase the practicality of the project, we tried to make the program run as close to real time as possible, since when a sniper is shooting at you, sooner is better than later.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,185 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Testing and Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41949</md:content-id>
+  <md:title>Testing and Results</md:title>
+  <md:abstract>This module describes our testing setup and the results we obtained.</md:abstract>
+  <md:uuid>82cf8f5e-f1bc-4342-aac3-a5dea55dc3a3</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1163664387003">
+      <title>Testing and Results:</title>
+      <para id="id1163664383827"> Our testing array consisted of four microphones borrowed from the electrical engineering lab, four audio to USB converters, and a USB hub that was then connected to the computer running the program. We tested two different setups (positions) for the array of microphones, a square and a parallelogram. Again, we simulated the rifle impulse with a hand clap. Our results are as follows:</para>
+      <para id="id1163662382634">First Array: Square</para>
+      <para id="id1163663408415">Microphones at (0, 0, 0), (0, 2, 0), (2, 0, 0), and (2, 2, 0)</para>
+      <table id="id1163662326565" summary="">
+        <tgroup cols="3">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <tbody>
+            <row>
+              <entry>
+                <emphasis effect="bold">Position</emphasis>
+              </entry>
+              <entry>
+                <emphasis effect="bold">(X,Y,Z) Results</emphasis>
+              </entry>
+              <entry>
+                <emphasis effect="bold">Tau (1,2,3,4)</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>(0,0,0)</entry>
+              <entry>(-651.2859, -313.7830, 0)</entry>
+              <entry>0 0.0118 0.0103 -0.2602</entry>
+            </row>
+            <row>
+              <entry>(0,0,0)</entry>
+              <entry>( -199.8994, 272.4750, 0)</entry>
+              <entry>0 0.0064 -0.0028 0.4928</entry>
+            </row>
+            <row>
+              <entry>(0.5,-7,0)</entry>
+              <entry>(1.0e+003*-1.1840, 1.0e+003*0.0451, 0)</entry>
+              <entry>0 0.0030 -0.0117 0.4828</entry>
+            </row>
+            <row>
+              <entry>(0.5,-7,0)</entry>
+              <entry>(1.0e+003*3.8188, 1.0e+003*1.3335, 0)</entry>
+              <entry>0 0.0218 0.0303 0.4928</entry>
+            </row>
+            <row>
+              <entry>(8,1,0)</entry>
+              <entry>( 1.0e+004*1.1917, 1.0e+004*0.0959, 0)</entry>
+              <entry>0 0.0018 0.1032 0.4828</entry>
+            </row>
+            <row>
+              <entry>(8,1,0)</entry>
+              <entry>(1.0e+003*7.0765, 1.0e+003*0.0780, 0)</entry>
+              <entry>0 0.0118 -0.0726 -0.4460</entry>
+            </row>
+            <row>
+              <entry>(1.5,19,0)</entry>
+              <entry>(1.0e+004*-1.0404, 1.0e+004*-0.1080, 0)</entry>
+              <entry>0 0.0118 0.1132 -0.4460</entry>
+            </row>
+            <row>
+              <entry>(1.5,19,0)</entry>
+              <entry>( 1.0e+003*2.4049, 1.0e+003* 0.7235, 0)</entry>
+              <entry>0 0.0118 0.0203 0.4828</entry>
+            </row>
+            <row>
+              <entry>(-3,2,0)</entry>
+              <entry>(1.0e+003*3.7463, 1.0e+003* 1.3085, 0)</entry>
+              <entry>0 0.0218 0.0303 0.4828</entry>
+            </row>
+            <row>
+              <entry>(-3,2,0)</entry>
+              <entry>( 1.0e+004*-1.8326, 1.0e+004*0.1534, 0)</entry>
+              <entry>0 0.0118 0.2061 -0.4460</entry>
+            </row>
+            <row>
+              <entry>(-4,-2,0)</entry>
+              <entry>( 1.0e+003*-1.0406, 1.0e+003*-0.1446, 0)</entry>
+              <entry>0 0.0018 0.0103 -0.4560</entry>
+            </row>
+            <row>
+              <entry>(-4,-2,0)</entry>
+              <entry>( 1.0e+003*3.5954, 1.0e+003*0.8343, 0)</entry>
+              <entry>0 0.0118 0.0303 0.4928</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para id="id1163662821399"/>
+      <para id="id1163665929405">Second Array: Parallelogram</para>
+      <para id="id1163672186383">Microphones at (0, 0, 0), (-0.5, 7, 0), (3, -1, 0), (3.5, 4, 0)</para>
+      <table id="id1163663176399" summary="">
+        <tgroup cols="3">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <tbody>
+            <row>
+              <entry>
+                <emphasis effect="bold">Position</emphasis>
+              </entry>
+              <entry>
+                <emphasis effect="bold">(X,Y,Z) Results</emphasis>
+              </entry>
+              <entry>
+                <emphasis effect="bold">Tau (1,2,3,4)</emphasis>
+              </entry>
+            </row>
+            <row>
+              <entry>(0,0,0)</entry>
+              <entry>(-201.4001, 63.0702, 0)</entry>
+              <entry>0 -0.0911 0.0096 0.0068</entry>
+            </row>
+            <row>
+              <entry>(0,0,0)</entry>
+              <entry>( 2.7784, -7.2170, 0)</entry>
+              <entry>0 -0.0070 0.0081 -0.0038</entry>
+            </row>
+            <row>
+              <entry>(0.5,-7,0)</entry>
+              <entry>(1.0e+003* 0.7510, 1.0e+003*-3.3145, 0)</entry>
+              <entry>0 -0.0711 0.0203 0.4828</entry>
+            </row>
+            <row>
+              <entry>(0.5,-7,0)</entry>
+              <entry>(1.0e+004*1.5821, 1.0e+004*-0.2474, 0)</entry>
+              <entry>0 0.0218 0.1232 0.4828</entry>
+            </row>
+            <row>
+              <entry>(8,1,0)</entry>
+              <entry>(-50.6356, -11.9636, 0)</entry>
+              <entry>0 0.0018 -0.0726 -0.0745</entry>
+            </row>
+            <row>
+              <entry>(8,1,0)</entry>
+              <entry>(858.3622, 88.1823, 0)</entry>
+              <entry>0 0.0118 -0.0726 -0.0745</entry>
+            </row>
+            <row>
+              <entry>(1.5,19,0)</entry>
+              <entry>(-40.0023, -925.3581, 0)</entry>
+              <entry>0 -0.0711 0.0303 0.1213</entry>
+            </row>
+            <row>
+              <entry>(1.5,19,0)</entry>
+              <entry>( 1.0e+003*2.6500, 1.0e+003*1.2213, 0)</entry>
+              <entry>0 0.0218 0.0203 0.4928</entry>
+            </row>
+            <row>
+              <entry>(-3,2,0)</entry>
+              <entry>(1.0e+003*2.4049, 1.0e+003*0.7235, 0)</entry>
+              <entry>0 0.0118 0.0203 0.4828</entry>
+            </row>
+            <row>
+              <entry>(-3,2,0)</entry>
+              <entry>(1.0e+004*-1.2287, 1.0e+004*0.1966, 0)</entry>
+              <entry>0 0.0218 0.1232 0.3071</entry>
+            </row>
+            <row>
+              <entry>(-4,-2,0)</entry>
+              <entry>(1.0e+003*-5.6438, 1.0e+003*-0.0804, 0)</entry>
+              <entry>0 0.0118 -0.0726 -0.3531</entry>
+            </row>
+            <row>
+              <entry>(-4,-2,0)</entry>
+              <entry>(1.0e+003*1.7925, 1.0e+003*0.2009, 0)</entry>
+              <entry>0 0.0018 0.0203 0.3899</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para id="id1163663152029">As can be seen above in both of our test setups the scale (originally measured in feet) was off by a large magnitude. The second setup, the parallelogram did resulted in less of an error in scale, but there was still a large discrepancy. Although the scale was off, the ratio of X and Y (shown by the position of the clap) was correct even if the magnitude was off.</para>
+      <para id="id1163667902620"> Besides discrepancies in scale we did have issues with our results for tau, which represented the time delay of the audio reaching the various microphones. We were unable to synchronize the microphones and get them all to begin recording simultaneously. We did try calibrating them but the recording delays of the microphones changed each time so our calibration was an average, and therefore not exact. This meant that the microphones had a delay (of about a tenth of a second) between the first one beginning to record to the last one. In some cases, the microphone that should have recorded the sound first began recording before the other microphones, making it appear that that microphone heard the sound last. These issues overall led to skewed results for the various values of tau in our testing. Because the results depended so much on the time delay, none of our results gave the correct location of the origin of the sound. We did however manage to get the general direction of the sound correct about 50% of the time.</para>
+      <para id="id1163669150040"> The results that we produced were far from what we expected or desired. Although we did manage to get the general direction in about half the cases we were nowhere near determining the exact position. The problem was most likely caused by the inability to the properly calibrate or synchronize the recording of the microphones. There are a variety of ways that could have solved this problem such as an external trigger that started the microphones at the same time or running the microphones on four different programs that fed into one other program that then analyzed the data. Microphone sensitivity could also possibly improve the results.</para>
+      <para id="id1163672082547"> Overall, our results do determine the general direction of the sound and prove that multilateration can be used to help pinpoint location.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,18 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Complications</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41945</md:content-id>
+  <md:title>Complications</md:title>
+  <md:abstract>This module contains a summary of the complications that arose during our testing.</md:abstract>
+  <md:uuid>3f765cee-fde0-4df3-9b47-4a182ab62459</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1171925999811">
+      <title>Complications:</title>
+      <para id="id1171926108712">As is inevitable in any project, we ran into a few complications along the way. It was not possible for us to test our program with a sniper shot, or mounted on a military vehicle. Instead, we used a handclap, which we believe provides the necessary difference in amplitude to be recognized against the noise inherent to the system. In the program itself, we had difficulties calibrating the microphones and setting them to record simultaneously. With different start recording times, it was difficult to determine a correct time difference of arrival, τm. </para>
+      <para id="id1171925980336">Another error arose when we tried to calculate the position. The time differences of arrival were slightly inaccurate due to the time differences that the computer creates because it cannot start all four microphones recording at the same time. Originally we set the microphones into a square shape, approximately 2 feet apart, but when this gave positions with more error than we felt was acceptable, we rearranged the microphones into a parallelogram shape with much larger distances, approximately 7 feet. Overall, since we were able to find correct ratios but not magnitudes, we feel that our testing setup needed to be on a larger scale than we were able to test with: if we had access to better microphones and been able to test with distances of 100 feet, instead of 10, we might have been able to troubleshoot errors better.</para>
+      <para id="id1171926147340">If we had the time to repeat our experiments, we would like to look into the possibility of using a different coding language, that would allow us to start all four microphones recording simultaneously, or at four different programs to start each microphone and then feed the data from those four subprograms into a driver program to do the multilateration calculations.</para>
+    </section>
+  </content>
+</document>

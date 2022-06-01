@@ -1,0 +1,133 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Program</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41952</md:content-id>
+  <md:title>Program</md:title>
+  <md:abstract>This module gives a summary of the code we wrote to implement multilateration.</md:abstract>
+  <md:uuid>3d892d4b-9b5b-4a58-a8d4-2ae26bcffe65</md:uuid>
+</metadata>
+
+<content>
+    <section id="id8391791">
+      <title>Program:</title>
+      <para id="id8411786">Here is the code for the program that we wrote to record and analyze the data received from the microphones:</para>
+      <para id="id8133435">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id1165717115405">% Program constants</para>
+      <para id="id8278023">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id8871538">nMics = 4; % The number of microphones</para>
+      <para id="id8781924">Fs = 44100; % The sample rate</para>
+      <para id="id1165717096489">nBits = 8; % The number of bits per sample, either {8,16,24}</para>
+      <para id="id1165717123302">nChannels = 1; % The number of channels recorded, either {0,1}</para>
+      <para id="id1165718268725">recordLengthSeconds = 3; % The length of each recording in seconds</para>
+      <para id="id8392114">recordLength = recordLengthSeconds*Fs; % The length of each recording in entries</para>
+      <para id="id5894459">v = 1130.90551;</para>
+      <para id="id8945320">maxLags = 0.5*Fs;</para>
+      <para id="id1165717787738">% Offset in seconds to add to each mic's tau to account for delay start in recording</para>
+      <para id="id8446164">mic1TauOffset = 0;</para>
+      <para id="id8322232">mic2TauOffset = 0.0279;</para>
+      <para id="id1165716723351">mic3TauOffset = 0.0596;</para>
+      <para id="id7501635">mic4TauOffset = 0.1095;</para>
+      <para id="id8488074">This first part demonstrates the variables that we created and our averages (the offsets) used in calibrating the microphones (we got these values with time delay tests before we tested the entire array). The variable v represents the speed of sound in the area that we tested, and the maxLags represents the maximum lag between the microphones.</para>
+      <para id="id6907568">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id1165716718384">% Initialization</para>
+      <para id="id6966362">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id8418239">pause on; % Enable pausing, which is used below</para>
+      <para id="id6883129">ids = zeros(1,nMics); % The device ID for each microphone</para>
+      <para id="id3811689">ids(1) = 1;</para>
+      <para id="id5683076">ids(2) = 2;</para>
+      <para id="id7480223">ids(3) = 3;</para>
+      <para id="id3319510">ids(4) = 4;</para>
+      <para id="id8240677">taus = zeros(1,nMics); % The TDOA in seconds between each mic and mic 1</para>
+      <para id="id8367493">As = zeros(1,nMics-2);</para>
+      <para id="id8810403">Bs = zeros(1,nMics-2);</para>
+      <para id="id8910131">Ds = zeros(1,nMics-2);</para>
+      <para id="id8214680">xs = zeros(1,nMics); % The x-position in feet of each mic relative to mic 1</para>
+      <para id="id8294920">ys = zeros(1,nMics); % The y-position in feet of each mic relative to mic 1</para>
+      <para id="id8520294">%{</para>
+      <para id="id7509916">xs(1) = 0; % Microphone #1 is at (0,0)</para>
+      <para id="id7500813">ys(1) = 0;</para>
+      <para id="id8434513">xs(2) = 0; % Microphone #2 is at (0,2)</para>
+      <para id="id8493491">ys(2) = 2;</para>
+      <para id="id8374232">xs(3) = 2; % Microphone #3 is at (2,0)</para>
+      <para id="id8429517">ys(3) = 0;</para>
+      <para id="id7120786">xs(4) = 2; % Microphone #4 is at (2,2)</para>
+      <para id="id1165716825081">ys(4) = 2;</para>
+      <para id="id7945992">%}</para>
+      <para id="id8460781">xs(1) = 0; % Microphone #1 is at (0,0)</para>
+      <para id="id2566906">ys(1) = 0;</para>
+      <para id="id8506914">xs(2) = -.5; % Microphone #2 is at (-.5,1)</para>
+      <para id="id8685460">ys(2) = 1;</para>
+      <para id="id8690105">xs(3) = -1; % Microphone #3 is at (-1,2)</para>
+      <para id="id8342961">ys(3) = 2;</para>
+      <para id="id7414695">xs(4) = -1; % Microphone #4 is at (-1,3)</para>
+      <para id="id8357640">ys(4) = 3;</para>
+      <para id="id1165717370787">A = zeros(nMics-2,2); %</para>
+      <para id="id7775984">B = zeros(nMics-2,1); % The matrices used to solve for point of origin, AX = B</para>
+      <para id="id8636827">This second part shows how we set up our coordinate grid. We used Matlab to identify each microphone and them input the position of each microphone (both array setups are shown). The last three lines identify the matrices used to find the point of origin, meaning that position was solved with respect to a certain microphone (the microphone at (0,0)).</para>
+      <para id="id8771544">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id1165717528369">% Record audio data</para>
+      <para id="id1165717139168">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id1165717067730">recorder1 = audiorecorder(Fs, nBits, nChannels, ids(1));</para>
+      <para id="id8731626">recorder2 = audiorecorder(Fs, nBits, nChannels, ids(2));</para>
+      <para id="id7399954">recorder3 = audiorecorder(Fs, nBits, nChannels, ids(3));</para>
+      <para id="id8228845">recorder4 = audiorecorder(Fs, nBits, nChannels, ids(4));</para>
+      <para id="id8688676">record(recorder1, recordLengthSeconds);</para>
+      <para id="id7436187">record(recorder2, recordLengthSeconds);</para>
+      <para id="id8788072">record(recorder3, recordLengthSeconds);</para>
+      <para id="id8493117">record(recorder4, recordLengthSeconds);</para>
+      <para id="id8768111">pause(recordLengthSeconds*1.5); % Pause for the length of the recording</para>
+      <para id="id8644331">% plus 50% to ensure recording finishes</para>
+      <para id="id8939625">temp = getaudiodata(recorder1);</para>
+      <para id="id8409215">record1 = temp;</para>
+      <para id="id8808337">temp = getaudiodata(recorder2);</para>
+      <para id="id1165716825652">record2 = temp;</para>
+      <para id="id8686174">temp = getaudiodata(recorder3);</para>
+      <para id="id8911504">record3 = temp;</para>
+      <para id="id8810475">temp = getaudiodata(recorder4);</para>
+      <para id="id1165717113547">record4 = temp;</para>
+      <para id="id7324517">%{</para>
+      <para id="id8205188">figure;</para>
+      <para id="id7254662">plot(record1);</para>
+      <para id="id8732570">figure;</para>
+      <para id="id6939405">plot(record2);</para>
+      <para id="id8137972">figure;</para>
+      <para id="id1165717119664">plot(record3);</para>
+      <para id="id8833225">figure;</para>
+      <para id="id8309581">plot(record4);</para>
+      <para id="id8805340">%}</para>
+      <para id="id8374348">The third part involves the recording the data from the microphones and then plotting the impulse. The pause function is used to ensure that all of the impulse is recorded and not cut off. The data is then plotted on the same graph. The plots all showed the impulse response of the clap.</para>
+      <para id="id8182669">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id8828484">% Analyze audio data</para>
+      <para id="id8634540">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</para>
+      <para id="id8450332">% Find TDOA for each mic</para>
+      <para id="id8200148">taus(1) = 0; % No TDOA between mic 1 and itself</para>
+      <para id="id2566799">crosscorrelation = xcorr(record2,record1,maxLags); % TDOA for mic 2</para>
+      <para id="id8270340">[maxVal, maxIndex] = max(crosscorrelation);</para>
+      <para id="id8401126">taus(2) = (maxIndex-maxLags)/Fs + mic2TauOffset;</para>
+      <para id="id1165717326059">crosscorrelation = xcorr(record3,record1,maxLags); % TDOA for mic 3</para>
+      <para id="id8356215">[maxVal, maxIndex] = max(crosscorrelation);</para>
+      <para id="id8431547">taus(3) = (maxIndex-maxLags)/Fs + mic3TauOffset;</para>
+      <para id="id8387293">crosscorrelation = xcorr(record4,record1,maxLags); % TDOA for mic 4</para>
+      <para id="id8836275">[maxVal, maxIndex] = max(crosscorrelation);</para>
+      <para id="id8816192">taus(4) = (maxIndex-maxLags)/Fs + mic4TauOffset;</para>
+      <para id="id7405669">% Find A_m, B_m and D_m for each mic m</para>
+      <para id="id1165717048608">for i=3:nMics</para>
+      <para id="id2569374">As(i) = 2*xs(i)/(v*taus(i)) - 2*xs(2)/(v*taus(2));</para>
+      <para id="id1165717287926">Bs(i) = 2*ys(i)/(v*taus(i)) - 2*ys(2)/(v*taus(2));</para>
+      <para id="id5928425">Ds(i) = v*taus(i) - v*taus(2) - (xs(i)^2 + ys(i)^2)/(v*taus(i)) + (xs(2)^2 + ys(2)^2)/(v*taus(2));</para>
+      <para id="id7254136">end</para>
+      <para id="id7043686">% Generate matrices A, B to solve for Ax = B</para>
+      <para id="id1165717595481">for i=3:nMics</para>
+      <para id="id7374785">A(i-2,1) = As(i);</para>
+      <para id="id8378352">A(i-2,2) = Bs(i);</para>
+      <para id="id8634290">B(i-2,1) = -Ds(i);</para>
+      <para id="id8802956">end</para>
+      <para id="id8334202">X = linsolve(A,B);</para>
+      <para id="id8409583">A</para>
+      <para id="id6869801">B</para>
+      <para id="id8302633">X</para>
+      <para id="id7349052">taus </para>
+      <para id="id8409474">The final part involved finding the actual time differences between the sound recordings of the microphones. As seen at the top, the known data of the different time arrivals of the sound to each individual microphone was cross-correlated in order to find the time differences in arrival of the sound for any two microphones. This information was then used to create matrix points for each of the microphones. The matrix was then solved to find the position of the person clapping using the equation Ax = B. The values were then printed out.</para>
+    </section>
+  </content>
+</document>

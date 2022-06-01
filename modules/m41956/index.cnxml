@@ -1,0 +1,30 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Behind the Scenes: Algorithms at Work</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m41956</md:content-id>
+  <md:title>Behind the Scenes: Algorithms at Work</md:title>
+  <md:abstract>In this module is a description of multilateration, the technique used to pinpoint position.</md:abstract>
+  <md:uuid>75f9012b-57f4-4069-90f9-b550be5eef80</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1172042224098">
+      <title>Behind the scenes Algorithms:</title>
+      <para id="id1172050257523">Because we know only the time difference between each microphone’s recognition of the sound, not the initial time of the sound itself, we decided to use multilateration as the primary algorithm. Multilateration uses the time difference of arrival to calculate a distance from the receivers. Plotting with a radius of this distance yields a hyperbolic arc that gives possible locations for the sound. The intersection of multiple arcs found by using multiple sensors gives the position of the origin of the sound.</para>
+      <para id="id1172041923075">In more detail, the microphones pick up the sound at different times which Matlab then cross correlates to get the time difference of arrival between any two sensors. This time difference of arrival is then used with the speed of the sound to create a series of linear equations that when solved, will give the direction and position of the sound’s origin.</para>
+      <para id="id1172042435392">With a sound emitter (Es) at some unknown position (x,y), we create a coordinate system around the known positions of the sensors, with the position of one sensor defined as the origin (S0). Using this sensor as the origin simplifies the distance from this sensor to Es. The distance from the sensor at the origin to the emitter can be written as </para>
+      <para id="id1172055572236">d0=S0 - Es= x2+ y2</para>
+      <para id="id1172046382843">The distance d0 is the speed of sound multiplied by the transit time (T0). However, since we do not know T0, we use the time difference of arrival between S0 and any other sensor, Sm.</para>
+      <para id="id1172050496438">vτm=vTm- vT0</para>
+      <para id="id1172047577714">vτm= dm- d0</para>
+      <para id="id1172044713999">Next, we used the cross correlation function to measure the time shift between the recorded waveforms, which is τm. Some manipulation of the above equations gives a set of linear equations of Es. </para>
+      <para id="id1172050258380">
+        <emphasis effect="italics">0=xAm+yBm+C</emphasis>
+        <emphasis effect="italics">m</emphasis>
+      </para>
+      <para id="id1172043370173">where Am, Bm, and Cm are constants representing the distances from the chosen sensor Sm and Es. Because S0 is used in each equation, S0 cannot be used to generate an equation for the set.</para>
+      <para id="id1172044027959">As an algorithm, multilateration requires very little input: the times at which each microphone recognizes the sound, the fixed distance between the microphones, and the speed of sound. As a result, it was easier to implement multilateration over more conventional triangulation methods in which the angle and the distances between the microphones and the origin of sound are needed.</para>
+      <para id="id1172041925581"/>
+    </section>
+  </content>
+</document>
